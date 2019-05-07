@@ -1,7 +1,6 @@
-# react-native-im-easemob
+# react-native-easemob-sexysix
 
-[![npm version](https://img.shields.io/npm/v/react-native-im-easemob.svg?style=flat)](https://www.npmjs.com/package/react-native-im-easemob)
-[![Build Status](https://travis-ci.org/RNCommon/react-native-im-easemob.svg?branch=master)](https://travis-ci.org/RNCommon/react-native-im-easemob)
+forked from [RNCommon/react-native-im-easemob](https://github.com/RNCommon/react-native-im-easemob)
 
 环信IM的原生接口React-Native封装库。
 
@@ -10,18 +9,54 @@
 使用Yarn安装:
 
 ```
-yarn add react-native-im-easemob
+yarn add react-native-easemob-sexysix
 ```
 
 使用npm安装:
 
 ```
-npm install --save react-native-im-easemob
+npm install --save react-native-easemob-sexysix
 ```
 
-## example工程设置
+需要在合适的位置初始化：
+```
+await Client.initWithAppKey(CONFIG.easemobKey)
+// 设置之后才可以设置相关监听
+await EventEmitter.init()
+await Client.notifyJSDidLoad()
+```
 
-下载后，在example目录中执行npm install或者yarn，而不要在根目录下安装node_modules。
+## Android环境设置
+
+在settings.gradle文件中添加：
+
+```
+include ':react-native-im-easemob'
+project(':react-native-im-easemob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-im-easemob/android')
+```
+
+在module级的build.gradle中添加：
+
+```
+dependencies {
+    implementation project(':react-native-im-easemob')
+}
+```
+
+在ReactNativeHost中添加：
+
+```
+import com.im.easemob.EasemobPackage;
+
+@Override
+protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+        new EasemobPackage()
+    );
+}
+```
+
+
 
 ## iOS环境设置
 
@@ -53,32 +88,3 @@ end
 
 这是因为环信SDK的原因，`Hyphenate`打包需要使用`lipo`来处理`Hyphenate.framework`，从中剔除i386和x86_64的模拟器框架。具体原因请参照环信文档。
 
-## Android环境设置
-
-在settings.gradle文件中添加：
-
-```
-include ':react-native-im-easemob'
-project(':react-native-im-easemob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-im-easemob/android')
-```
-
-在module级的build.gradle中添加：
-
-```
-dependencies {
-    implementation project(':react-native-im-easemob')
-}
-```
-
-在ReactNativeHost中添加：
-
-```
-import com.im.easemob.EasemobPackage;
-
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new EasemobPackage()
-    );
-}
-```

@@ -2,7 +2,6 @@ package com.im.easemob;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.os.Build;
 import android.os.Process;
 import android.util.Log;
 
@@ -17,10 +16,6 @@ import com.hyphenate.chat.EMOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hyphenate.push.EMPushConfig;
-import com.hyphenate.push.EMPushHelper;
-import com.hyphenate.push.EMPushType;
-import com.hyphenate.push.PushListener;
 import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
@@ -39,6 +34,8 @@ class EasemobHelper {
     public Context context() {
         return mContext;
     }
+
+    private EaseNotifier mEaseNotifier;
 
     private static class Inner {
         private static EasemobHelper INSTANCE = new EasemobHelper();
@@ -64,10 +61,7 @@ class EasemobHelper {
         if (processAppName == null || !processAppName.equalsIgnoreCase(context.getPackageName())) {
             Log.e(TAG, "enter the service process!");
         }
-
-        EMOptions emOptions = initOptions(options);
-        configOfflinePushPar(emOptions);
-        EMClient.getInstance().init(context, emOptions);
+        EMClient.getInstance().init(context, initOptions(options));
 
         registerListener();
 
@@ -77,7 +71,15 @@ class EasemobHelper {
             mHookDelegate.onInit(this.mContext, options);
         }
 
+        if (mEaseNotifier == null) {
+            mEaseNotifier = new EaseNotifier(mContext);
+        }
+
         sdkInited = true;
+    }
+
+    public EaseNotifier getEaseNotifier() {
+        return mEaseNotifier;
     }
 
     void notifyJSDidLoad(ReactContext reactContext) {
@@ -189,38 +191,4 @@ class EasemobHelper {
         }
         return null;
     }
-
-
-     private void configOfflinePushPar(EMOptions options){
-            String brand= Build.BRAND.toLowerCase();
-            if(mContext == null) return;
-            EMPushConfig.Builder builder = new EMPushConfig.Builder(mContext);
-            String appId,appKey,appSecret;
-            switch (brand){
-                case "meizu":
-                       appId = mContext.getString(R.string.MEIZU_PUSH_APP_ID);
-                       appKey = mContext.getString(R.string.MEIZU_PUSH_APP_KEY);
-                       if("".equals(appId) || "".equals(appKey)) return;
-                       builder.enableMeiZuPush(appId,appKey);
-                      break;
-                case "xiaomi":
-                     appId = mContext.getString(R.string.XIAOMI_PUSH_APP_ID);
-                     appKey = mContext.getString(R.string.XIAOMI_PUSH_APP_KEY);
-                    if("".equals(appId) || "".equals(appKey)) return;
-                    builder.enableMiPush(appId,appKey);
-                    break;
-                case "oppo":
-                       appKey = mContext.getString(R.string.OPPO_PUSH_APP_KEY);
-                       appSecret = mContext.getString(R.string.OPPO_PUSH_APP_SECRET);
-                      if("".equals(appSecret) || "".equals(appKey)) return;
-                      builder.enableOppoPush(appKey,appSecret);
-                     break;
-                case "huawei":
-                    builder.enableHWPush();
-                    break;
-                default:
-                    return;
-            }
-            options.setPushConfig(builder.build());
-        }
 }

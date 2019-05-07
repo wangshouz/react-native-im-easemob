@@ -1,22 +1,20 @@
 {
-    "name": "react-native-im-easemob",
-    "version": "1.0.22",
+    "name": "react-native-easemob-sexysix",
+    "version": "1.0.0",
     "private": false,
     "description": "Easemob for React Native.",
     "main": "src/index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RNCommon/react-native-im-easemob.git"
+        "url": "git+https://github.com/wangshouz/react-native-im-easemob"
     },
     "keywords": [
         "React-Native",
-        "Easemob"
+        "IM",
+        "Easemob环信",
+        "TypeScript"
     ],
-    "author": "Xiaosong Gao",
+    "author": "SexySix",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/RNCommon/react-native-im-easemob/issues",
-        "email": "gaoxiaosong06@gmail.com"
-    },
-    "homepage": "https://github.com/RNCommon/react-native-im-easemob#readme"
+    "homepage": "https://github.com/wangshouz/react-native-im-easemob"
 }

@@ -187,6 +187,8 @@ public class EasemobListener implements EMGroupChangeListener, EMMessageListener
 
     @Override
     public void onMessageReceived(List<EMMessage> list) {
+        // 消息通知
+        EasemobHelper.getInstance().getEaseNotifier().notify(list);
         EasemobHelper.getInstance().sendEvent(CHAT_MANAGER_DELEGATE, MESSAGE_DID_RECEIVE, EasemobConverter
                 .convertList(list));
     }
