@@ -1,4 +1,4 @@
-# react-native-easemob-sexysix
+# react-native-im-easemob
 
 forked from [RNCommon/react-native-im-easemob](https://github.com/RNCommon/react-native-im-easemob)
 
@@ -9,18 +9,18 @@ forked from [RNCommon/react-native-im-easemob](https://github.com/RNCommon/react
 使用Yarn安装:
 
 ```
-yarn add react-native-easemob-sexysix
+yarn add react-native-im-easemob
 ```
 
 使用npm安装:
 
 ```
-npm install --save react-native-easemob-sexysix
+npm install --save react-native-im-easemob
 ```
 
 link:
 ```
-react-native link react-native-easemob-sexysix
+react-native link react-native-im-easemob
 ```
 
 需要在合适的位置初始化：

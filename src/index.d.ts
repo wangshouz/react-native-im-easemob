@@ -2,7 +2,7 @@
  * Created by joeshao on 2019/1/14.
  */
 
-declare module 'react-native-easemob-sexysix' {
+declare module 'react-native-im-easemob' {
   export interface EMMessage {
     conversationId: string
     from: string
