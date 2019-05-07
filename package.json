@@ -4,6 +4,7 @@
     "private": false,
     "description": "Easemob for React Native.",
     "main": "src/index.js",
+    "types": "src/index.d.ts",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/wangshouz/react-native-im-easemob"
@@ -11,8 +12,7 @@
     "keywords": [
         "React-Native",
         "IM",
-        "Easemob环信",
-        "TypeScript"
+        "Easemob环信"
     ],
     "author": "SexySix",
     "license": "MIT",
