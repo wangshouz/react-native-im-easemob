@@ -9,6 +9,7 @@
 #import "ChatManagerDelegate.h"
 #import "Client.h"
 #import "NSObject+Util.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 static NSString *eventType = @"ChatManagerDelegate";
 
@@ -21,6 +22,7 @@ RCT_EXPORT_MODULE();
 #pragma mark - EMChatManagerDelegate
 
 - (void)messagesDidReceive:(NSArray *)aMessages {
+    AudioServicesPlaySystemSound(1007);
     NSMutableArray *dicArray = [NSMutableArray array];
     [aMessages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [dicArray addObject:[obj objectToDictionary]];
